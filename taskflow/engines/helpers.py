@@ -30,7 +30,7 @@ ENGINES_NAMESPACE = 'taskflow.engines'
 
 
 def load(flow, store=None, flow_detail=None, book=None,
-         engine_conf=None, backend=None, namespace=ENGINES_NAMESPACE):
+         engine_conf=None, backend=None, meta=None, namespace=ENGINES_NAMESPACE):
     """Load flow into engine
 
     This function creates and prepares engine to run the
@@ -68,7 +68,8 @@ def load(flow, store=None, flow_detail=None, book=None,
 
     if flow_detail is None:
         flow_detail = p_utils.create_flow_detail(flow, book=book,
-                                                 backend=backend)
+                                                 backend=backend,
+                                                 meta=meta)
 
     mgr = stevedore.driver.DriverManager(
         namespace, engine_conf['engine'],
